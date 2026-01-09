@@ -1,0 +1,261 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    padding: 10px;
+    position: relative;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#cart-badge {
+    background-color: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============ BOTONES - CORREGIDO ============ */
+button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Botón abrir/cerrar carrito - AHORA VISIBLE SOBRE EL CARRITO */
+#open-cart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10002; /* MÁS ALTO que el carrito (10001) */
+}
+
+/* Botón siguiente imagen */
+#next-image {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+}
+
+/* Barra lateral del carrito */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    transition: right 0.4s ease-in-out;
+    z-index: 10001; /* ALTO pero MENOS que el botón */
+    overflow-y: auto;
+}
+
+/* Estilo para los inputs */
+#check-in, #check-out {
+    margin: 20px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Estilo para el total */
+#total-price {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Estilo para etiquetas */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 999; /* Footer DEBAJO de todo */
+}
+
+/* RESPONSIVE */
+@media (max-width: 420px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .cart-sidebar {
+        width: 85%;
+        right: -85%;
+        padding: 12px;
+    }
+    
+    #open-cart, #next-image {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    #open-cart {
+        top: 15px;
+        right: 15px;
+    }
+    
+    #next-image {
+        bottom: 15px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cart-sidebar {
+        width: 300px;
+        right: -350px;
+    }
+}
+/* CALENDARIOS */
+.rbc-calendar {
+  min-height: 600px;
+  width: 100%;
+}
+
+/* PARA MÓVILES */
+@media (max-width: 768px) {
+  .rbc-calendar {
+    min-height: 800px !important;
+    font-size: 16px !important; /* Aumenta tamaño de texto */
+  }
+  
+  /* MENÚ/TOOLBAR MÁS GRANDE */
+  .rbc-toolbar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    padding: 15px 0 !important;
+  }
+  
+  .rbc-toolbar-label {
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    margin: 10px 0 !important;
+    order: -1 !important; /* Pon el título arriba */
+  }
+  
+  /* BOTONES MÁS GRANDES */
+  .rbc-btn-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  
+  .rbc-btn-group button {
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    min-height: 44px !important; /* Tamaño táctil mínimo */
+    flex: 1 !important;
+    min-width: 100px !important;
+    margin: 2px !important;
+  }
+  
+  /* CABECERAS DE DÍAS MÁS GRANDES */
+  .rbc-header {
+    padding: 15px 5px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+  }
+  
+  /* CELDAS DE DÍAS MÁS GRANDES */
+  .rbc-day-bg, .rbc-date-cell {
+    min-height: 60px !important;
+  }
+  
+  .rbc-date-cell {
+    padding: 10px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+  }
+  
+  /* EVENTOS MÁS LEGIBLES */
+  .rbc-event {
+    padding: 8px !important;
+    font-size: 13px !important;
+    margin: 2px !important;
+  }
+}
+
+/* PARA MÓVILES MUY PEQUEÑOS */
+@media (max-width: 480px) {
+  .rbc-calendar {
+    min-height: 900px !important;
+    font-size: 17px !important;
+  }
+  
+  .rbc-toolbar-label {
+    font-size: 1.8rem !important;
+  }
+  
+  .rbc-btn-group button {
+    padding: 14px 10px !important;
+    font-size: 14px !important;
+    min-width: 90px !important;
+  }
+  
+  .rbc-header {
+    font-size: 13px !important;
+    padding: 12px 3px !important;
+  }
+  
+  .rbc-date-cell {
+    font-size: 15px !important;
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recorrido 3D del Departamento</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="producto.html">Departamentos</a></li>
+                <li><a href="#" id="nav-cart-link">Carrito <span id="cart-badge">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Botón para abrir/cerrar el carrito -->
+        <button id="open-cart">Abrir Carrito</button>
+
+        <div id="container" class="container"></div>
+        
+        <!-- Botón Siguiente Imagen -->
+        <button id="next-image">Siguiente Imagen</button>
+        
+        <!-- Carrito lateral - SIN style inline, cerrado por defecto -->
+        <div id="cart-sidebar" class="cart-sidebar">
+            <h3>Carrito</h3>
+
+            <label for="check-in">Check-in:</label>
+            <input type="text" id="check-in" placeholder="Selecciona la fecha de Check-in" />
+
+            <label for="check-out">Check-out:</label>
+            <input type="text" id="check-out" placeholder="Selecciona la fecha de Check-out" />
+
+            <p id="total-price">Total: $ 0 CLP</p>
+            <p>Numero de noches: <span id="cart-count">0</span></p>
+            <button id="add-to-cart">Agregar al carrito</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 E-Commerce Inmobiliario 3D</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

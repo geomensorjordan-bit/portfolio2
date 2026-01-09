@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departamentos - Inmobiliario 3D</title>
+    <!-- Bootstrap SOLO para esta página -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizado COHERENTE con index.html -->
+    <style>
+        /* RESET y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* ============ HEADER - SIMILAR A INDEX.HTML ============ */
+        header {
+            background-color: #333;
+            padding: 0;
+            width: 100%;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .main-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .logo:hover {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            display: inline;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 0;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #ddd;
+        }
+        
+        .nav-links a.active {
+            font-weight: bold;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+        }
+        
+        #cart-badge {
+            background-color: red;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            margin-left: 5px;
+            display: inline-block;
+        }
+        
+        /* ============ HERO SECTION ============ */
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* ============ CONTENIDO PRINCIPAL ============ */
+        main {
+            flex: 1;
+            width: 100%;
+        }
+        
+        .productos-container {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+        
+        /* ============ TARJETAS DE PRODUCTOS ============ */
+        .producto-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .producto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #007bff;
+        }
+        
+        .producto-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .card-body-custom {
+            padding: 20px;
+        }
+        
+        .producto-card h5 {
+            color: #333;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .producto-card .categoria {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .producto-card .precio {
+            color: #007bff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+        
+        .producto-card .descripcion {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        /* ============ BOTÓN - COHERENTE CON INDEX.HTML ============ */
+        .btn-custom {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn-custom:hover {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* ============ FOOTER - COHERENTE CON INDEX.HTML ============ */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            width: 100%;
+            margin-top: auto;
+        }
+        
+        footer p {
+            margin: 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 992px) {
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .producto-card img {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-links {
+                gap: 10px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links li {
+                display: block;
+                width: 100%;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 10px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+            
+            .productos-container {
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 420px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            .hero-section {
+                padding: 30px 15px;
+            }
+            
+            .hero-section h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .producto-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============ HEADER - VISIBLE Y FUNCIONAL ============ -->
+    <header>
+        <nav class="main-nav">
+            <a href="index.html" class="logo">Inmobiliario 3D</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="producto.html" class="active">Departamentos</a></li>
+                <li><a href="index.html">Carrito <span id="cart-badge">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Descubre Nuestros Departamentos Premium</h1>
+            <p>Explora nuestra selección exclusiva de departamentos con recorridos virtuales 360°</p>
+        </div>
+    </section>
+
+    <!-- ============ PRODUCTOS CON BOOTSTRAP GRID ============ -->
+    <main class="productos-container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <!-- Producto 1 -->
+            <div class="col">
+                <div class="producto-card">
+                    <img src="imagenes/A.JPG" class="card-img-top" alt="Departamento Premium">
+                    <div class="card-body-custom">
+                        <h5>Departamento Premium</h5>
+                        <span class="categoria">Centro de la ciudad</span>
+                        <div class="precio">$50,000 CLP/noche</div>
+                        <p class="descripcion">Departamento completamente amueblado con vista panorámica al centro financiero. Incluye todas las comodidades modernas.</p>
+                        <a href="index.html" class="btn-custom">Ver Recorrido 3D</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 2 -->
+            <div class="col">
+                <div class="producto-card">
+                    <img src="imagenes/B.JPG" class="card-img-top" alt="Loft Moderno">
+                    <div class="card-body-custom">
+                        <h5>Loft Moderno</h5>
+                        <span class="categoria">Zona renovada</span>
+                        <div class="precio">$45,000 CLP/noche</div>
+                        <p class="descripcion">Loft de diseño contemporáneo con espacios abiertos y acabados de alta calidad. Perfecto para estadías creativas.</p>
+                        <a href="index.html" class="btn-custom">Ver Recorrido 3D</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div class="col">
+                <div class="producto-card">
+                    <img src="imagenes/C.JPG" class="card-img-top" alt="Penthouse">
+                    <div class="card-body-custom">
+                        <h5>Penthouse Exclusivo</h5>
+                        <span class="categoria">Último piso</span>
+                        <div class="precio">$75,000 CLP/noche</div>
+                        <p class="descripcion">Penthouse de lujo con terraza privada y vista 360° a la ciudad. Experiencia de hospedaje premium.</p>
+                        <a href="index.html" class="btn-custom">Ver Recorrido 3D</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div class="col">
+                <div class="producto-card">
+                    <img src="imagenes/D.JPG" class="card-img-top" alt="Estudio Ejecutivo">
+                    <div class="card-body-custom">
+                        <h5>Estudio Ejecutivo</h5>
+                        <span class="categoria">Zona financiera</span>
+                        <div class="precio">$35,000 CLP/noche</div>
+                        <p class="descripcion">Estudio completamente equipado para viajeros ejecutivos. Eficiente, moderno y con todas las comodidades necesarias.</p>
+                        <a href="index.html" class="btn-custom">Ver Recorrido 3D</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <p>© 2025 E-Commerce Inmobiliario - Recorridos Virtuales 360°</p>
+    </footer>
+
+    <!-- Bootstrap JS (solo para grid responsivo) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Cargar contador del carrito desde localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const reserva = localStorage.getItem('reserva');
+            const cartBadge = document.getElementById('cart-badge');
+            
+            if (reserva && cartBadge) {
+                try {
+                    const data = JSON.parse(reserva);
+                    cartBadge.textContent = data.noches > 0 ? '1' : '0';
+                } catch (e) {
+                    console.log('Error cargando reserva:', e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
