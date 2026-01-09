@@ -31,3 +31,6 @@ ecommerce-frontend-m2/
 │ ├── C.JPG
 │ └── D.JPG
 └── README.md # Este archivo
+
+## 🌐 Enlace al repositorio
+https://github.com/geomensorjordan-bit/portfolio2
